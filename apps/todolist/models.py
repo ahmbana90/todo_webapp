@@ -21,6 +21,9 @@ class Task(models.Model):
     def mark_undone(self):
         self.done = False
         self.save()
+    
+    def __str__(self):
+        return self.description
         
 class SharedTaskList(models.Model):
     task_list = models.ForeignKey(TaskList, on_delete=models.CASCADE)

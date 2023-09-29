@@ -9,3 +9,6 @@ dev-makemigrations:
 	python manage.py makemigrations --settings=config.settings.dev
 dev-showmigrations:
 	python manage.py showmigrations --settings=config.settings.dev
+
+dev-test:
+	python manage.py test apps.todolist.tests --settings=config.settings.dev
