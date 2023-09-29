@@ -1,0 +1,20 @@
+{% extends 'todolist/base.html' %}
+
+{% block title %}Profile - Your To-Do List{% endblock %}
+
+{% block content %}
+    <h1>Welcome, {{ user.username }}!</h1>
+    
+    <div class="profile-info">
+        <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture">
+        <p>Display Name: {{ user.profile.display_name }}</p>
+        <p>Bio: {{ user.profile.bio }}</p>
+    </div>
+
+    <h2>Your Task Lists:</h2>
+    <ul>
+        {% for task_list in task_lists %}
+            <li><a href="{% url 'task_list' task_list_id=task_list.id %}">{{ task_list.name }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}

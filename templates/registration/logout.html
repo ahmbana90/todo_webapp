@@ -1,0 +1,11 @@
+{% extends 'todolist/base.html' %}
+
+{% block title %}Logout - Your Title{% endblock %}
+
+{% block content %}
+    <h1>Logout</h1>
+    
+    <p>You have been successfully logged out.</p>
+    
+    <a href="{% url 'login' %}">Back to Login</a>
+{% endblock %}

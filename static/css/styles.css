@@ -1,0 +1,27 @@
+body {
+    background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+nav ul {
+    list-style: none;
+    background-color: #007acc;
+    text-align: center;
+}
+
+nav li {
+    display: inline;
+    margin: 10px;
+}
+
+a {
+    color: #000000;
+    text-decoration: underline;
+}
+
+/* Style for completed tasks */
+ul li.done {
+    text-decoration: line-through;
+    color: #888;
+}

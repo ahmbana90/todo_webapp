@@ -1,0 +1,15 @@
+{% extends 'todolist/base.html' %}
+
+{% block title %}Update Task - Your To-Do List{% endblock %}
+
+{% block content %}
+    <h1>Edit Task</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save Changes</button>
+    </form>
+    
+    <a href="{% url 'task_list' task_list_id=task.id %}">Back to Task List</a>
+{% endblock %}
