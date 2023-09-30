@@ -1,26 +1,25 @@
 {% extends 'todolist/base.html' %}
 
-{% block title %}Search Tasks - Your To-Do List{% endblock %}
-
 {% block content %}
+<div class="search-tasks">
     <h1>Search Tasks</h1>
-    
     <form method="get">
-        <input type="text" name="q" placeholder="Search tasks">
+        <input type="text" name="q" placeholder="Search tasks...">
         <button type="submit">Search</button>
     </form>
-    
-    <ul class="task-list">
+    <ul class="search-results">
         {% for task in tasks %}
             <li>
-                <input type="checkbox" {% if task.done %}checked{% endif %} 
-                       onclick="window.location.href='{% url 'mark_done' task_id=task.id %}'">
-                {{ task.description }}
+                <div class="search-result">
+                    <a href="{% url 'task_list' task.task_list.id %}">{{ task.description }}</a>
+                    <span class="task-list-name">({{ task.task_list.name }})</span>
+                </div>
             </li>
         {% empty %}
-            <p>No matching tasks found.</p>
+            <p>No results found.</p>
         {% endfor %}
     </ul>
-    
     <a href="{% url 'profile' %}">Back to Profile</a>
+</div>
 {% endblock %}
+

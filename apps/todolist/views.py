@@ -43,7 +43,8 @@ def create_task_list(request):
 
 @login_required
 def create_task(request, task_list_id):
-    task_list = TaskList.objects.get(pk=task_list_id)
+    task_list = get_object_or_404(TaskList, pk=task_list_id)
+    
     if request.method == 'POST':
         form = TaskForm(request.POST)
         if form.is_valid():
@@ -51,10 +52,10 @@ def create_task(request, task_list_id):
             task.task_list = task_list
             task.save()
             TaskHistory.objects.create(task=task, user=request.user, action='created')
-            return redirect('profile')
-            #return redirect('task_list', task_list_id=task_list_id)
+            return redirect('task_list', task_list_id=task_list_id) 
     else:
         form = TaskForm()
+    
     return render(request, 'todolist/create_task.html', {'form': form, 'task_list': task_list})
 
 def user_register(request):
@@ -149,7 +150,7 @@ def mark_done(request, task_id):
     else:
         task.mark_undone()
 
-    return redirect('profile')
+    return redirect('task_list', task_list_id=task_list.id)
 
 @login_required
 def search_tasks(request):
@@ -198,19 +199,6 @@ def edit_profile(request):
 
 @login_required
 def task_list(request, task_list_id):
-    # Get the task list object or return a 404 error if not found
     task_list = get_object_or_404(TaskList, pk=task_list_id, user=request.user)
-
-    # Check if the current user is the owner of the task list
-    if task_list.user != request.user:
-        return redirect('profile')  # Redirect unauthorized access
-
-    if request.method == 'POST':
-        form = TaskListForm(request.POST, instance=task_list)
-        if form.is_valid():
-            form.save()
-            return redirect('profile')
-    else:
-        form = TaskListForm(instance=task_list)
-
-    return render(request, 'todolist/task_list.html', {'form': form, 'task_list': task_list})
+    tasks = Task.objects.filter(task_list=task_list)
+    return render(request, 'todolist/task_list.html', {'task_list': task_list, 'tasks': tasks})

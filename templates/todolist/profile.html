@@ -1,20 +1,28 @@
 {% extends 'todolist/base.html' %}
 
-{% block title %}Profile - Your To-Do List{% endblock %}
-
 {% block content %}
-    <h1>Welcome, {{ user.username }}!</h1>
-    
-    <div class="profile-info">
-        <img src="{{ user.profile.profile_picture.url }}" alt="Profile Picture">
-        <p>Display Name: {{ user.profile.display_name }}</p>
-        <p>Bio: {{ user.profile.bio }}</p>
-    </div>
-
-    <h2>Your Task Lists:</h2>
-    <ul>
+<div class="profile">
+    <h1>Welcome, {{ user.username }}</h1>
+    <h2>Your Task Lists</h2>
+    <ul class="task-lists">
         {% for task_list in task_lists %}
-            <li><a href="{% url 'task_list' task_list_id=task_list.id %}">{{ task_list.name }}</a></li>
+            <li>
+                <div class="task-list">
+                    <a href="{% url 'task_list' task_list.id %}">{{ task_list.name }}</a>
+                    <div class="task-list-actions">
+                        <a href="{% url 'update_task_list' task_list.id %}">Edit</a>
+                        <a href="{% url 'delete_task_list' task_list.id %}">Delete</a>
+                    </div>
+                </div>
+            </li>
+        {% empty %}
+            <p>No task lists available.</p>
         {% endfor %}
     </ul>
+    <div class="profile-actions">
+        <a href="{% url 'create_task_list' %}">Create New Task List</a>
+        <a href="{% url 'search_tasks' %}">Search Tasks</a>
+        <a href="{% url 'export_task_lists' %}">Export Task Lists</a>
+    </div>
+</div>
 {% endblock %}

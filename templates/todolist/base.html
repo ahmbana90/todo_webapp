@@ -5,24 +5,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Your ToDo List</title>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="{% url 'profile' %}">Profile</a></li>
-            <li><a href="{% url 'create_task_list' %}">Create Task List</a></li>
-            <li><a href="{% url 'user_logout' %}" class="btn btn-logout">Log Out</a></li>
-            
-        </ul>
-    </nav>
-    <div class="content">
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{% url 'profile' %}">Profile</a></li>
+                <li><a href="{% url 'create_task_list' %}">Create Task List</a></li>
+                <li><a href="{% url 'search_tasks' %}">Search Tasks</a></li>
+                <li><a href="{% url 'export_task_lists' %}">Export Task Lists</a></li>
+                <li><a href="{% url 'user_logout' %}">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
         {% block content %}
         {% endblock %}
-    </div>
+    </main>
     <footer>
-        &copy; 2023 Ahmed Banalzwaa
+        &copy; {{ year }} Your ToDo List
     </footer>
 </body>
 </html>

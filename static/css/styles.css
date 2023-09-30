@@ -1,27 +1,72 @@
-body {
-    background-color: #f2f2f2;
-    font-family: Arial, sans-serif;
+body, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Style the header */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+header nav ul {
+    list-style-type: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Style the main content */
+main {
+    padding: 20px;
+}
+
+/* Style the profile section */
+.profile {
+    margin: 20px;
+}
+
+.profile h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.task-lists li {
+    list-style-type: none;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.task-list-actions a {
+    margin-left: 10px;
+    text-decoration: none;
     color: #333;
 }
 
-nav ul {
-    list-style: none;
-    background-color: #007acc;
-    text-align: center;
+.profile-actions {
+    margin-top: 20px;
 }
 
-nav li {
-    display: inline;
-    margin: 10px;
+.profile-actions a {
+    display: inline-block;
+    margin-right: 10px;
+    text-decoration: none;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
 }
 
-a {
-    color: #000000;
-    text-decoration: underline;
-}
-
-/* Style for completed tasks */
-ul li.done {
-    text-decoration: line-through;
-    color: #888;
+.profile-actions a:hover {
+    background-color: #555;
 }

@@ -1,16 +1,14 @@
 {% extends 'todolist/base.html' %}
 
-{% block title %}Delete Task List - Your To-Do List{% endblock %}
-
 {% block content %}
-    <h1>Delete Task List</h1>
-    
+<div class="delete-task-list">
+    <h1>Confirm Deletion</h1>
     <p>Are you sure you want to delete the task list "{{ task_list.name }}"?</p>
-    
     <form method="post">
         {% csrf_token %}
         <button type="submit">Delete</button>
     </form>
-    
-    <a href="{% url 'task_list' task_list_id=task_list.id %}">Cancel</a>
+    <a href="{% url 'task_list' task_list.id %}">Cancel</a>
+</div>
 {% endblock %}
+
